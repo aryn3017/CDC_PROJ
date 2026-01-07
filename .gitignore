@@ -5,3 +5,9 @@
 # Ignore images folder under data
 data/images/
 
+report.docx
+report.pdf
+report_level2.pdf
+test.ipynb
+
+gradcam_outputs/
