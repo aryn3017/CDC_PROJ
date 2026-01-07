@@ -20,7 +20,7 @@ performs calibrated price prediction.
 • Hybrid CNN + XGBoost model outperforming tabular-only baselines
 
 ### 3 Repository Structure
-
+```text
 data/
 ├── train.csv / train.xlsx
 ├── test.csv / test.xlsx
