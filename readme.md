@@ -1,7 +1,7 @@
-Satellite Imagery–Based Property Valuation
-A Multimodal Machine Learning Approach
+# Satellite Imagery–Based Property Valuation
+## A Multimodal Machine Learning Approach
 
-*1 Overview*
+# 1 Overview
 
 This project develops a multimodal regression pipeline for residential property valuation
 by combining traditional tabular housing attributes with satellite imagery. The core objective
@@ -11,7 +11,7 @@ The final system uses a hybrid CNN + XGBoost architecture, where convolutional
 neural networks extract visual representations from satellite images and a tree-based model
 performs calibrated price prediction.
 
-*2 Key Contributions*
+# 2 Key Contributions
 
 • Programmatic acquisition of satellite images using the Mapbox Static Images API
 • CNN-based feature extraction from satellite imagery
@@ -19,7 +19,7 @@ performs calibrated price prediction.
 • Model explainability using Grad-CAM
 • Hybrid CNN + XGBoost model outperforming tabular-only baselines
 
-*3 Repository Structure*
+# 3 Repository Structure
 
 data/
     train.csv / train.xlsx
@@ -40,12 +40,12 @@ outputs/
     best_model.pth
     final_predictions.csv
 
-*4 Environment Setup*
-___________________________________________________________________________________________________________________________
-4.1 Install Dependencies
+# 4 Environment Setup
+
+## 4.1 Install Dependencies
 
 pip install -r requirements . txt
-___________________________________________________________________________________________________________________________
+
 4.2 Core Libraries
 • PyTorch, torchvision
 • scikit-learn
@@ -54,23 +54,23 @@ ________________________________________________________________________________
 • OpenCV
 • matplotlib, seaborn
 
-*5 Satellite Image Acquisition*
+# 5 Satellite Image Acquisition
 
 Satellite images are downloaded using the Mapbox Static Images API.
-___________________________________________________________________________________________________________________________
-5.1 Set API Token
-___________________________________________________________________________________________________________________________
+ 
+## 5.1 Set API Token
+ 
 export MAPBOX_TOKEN = your_api_key_here # Linux / Mac
 set MAPBOX_TOKEN = your_api_key_here # Windows
-___________________________________________________________________________________________________________________________
-5.2 Download Images
-___________________________________________________________________________________________________________________________
+ 
+## 5.2 Download Images
+ 
 python src / data_fetcher . py
 Images are saved under:
 data/images/train/
 data/images/test/
 
-*6 Data Preprocessing and EDA*
+# 6 Data Preprocessing and EDA
 
 Run the preprocessing notebook:
 jupyter notebook notebooks / preprocessing . ipynb
@@ -80,7 +80,7 @@ This step includes:
 • Feature scaling for tabular data
 • Geospatial sanity checks
 
-*7 Multimodal CNN Training*
+# 7 Multimodal CNN Training
 
 The end-to-end multimodal model combines CNN image embeddings with tabular features.
 jupyter notebook  model_training . ipynb
@@ -92,7 +92,7 @@ jupyter notebook  model_training . ipynb
 The best-performing model is saved as:
 outputs/best_model.pth
 
-*8 Explainability with Grad-CAM*
+# 8 Explainability with Grad-CAM
 
 Grad-CAM is applied to the CNN backbone to visualize which image regions influence predic-
 tions.
@@ -104,7 +104,7 @@ Highlighted patterns include:
 Grad-CAM visualizations are stored in:
 outputs/gradcam/
 
-*9 Hybrid CNN + XGBoost Model*
+# 9 Hybrid CNN + XGBoost Model
 
 To maximize performance, CNN-extracted image embeddings are concatenated with tabular
 features and passed to an XGBoost regressor.
@@ -113,14 +113,14 @@ This hybrid approach leverages:
 • CNNs for representation learning
 • Tree-based models for calibration and nonlinear interactions
 
-*10 Model Performance*
+# 10 Model Performance
 
 Model RMSE (log) Approx. Price Error R2
-Tabular Baseline 0.277 ∼32% 0.72
-CNN + MLP 0.291 ∼34% 0.69
-Hybrid CNN + XGBoost 0.262 ∼30% 0.75
+Tabular Baseline 0.277  ∼32% 0.721
+CNN + MLP 0.274 ∼31% 0.728
+Hybrid CNN + XGBoost 0.179  ∼19.6% 0.883
 
-*11 Final Predictions*
+# 11 Final Predictions
 
 The final submission file is generated as:
 outputs/final_predictions.csv
@@ -128,16 +128,11 @@ Format:
 id,predicted_price
 Predictions are converted back from log(1 + price) to the original price scale.
 
-*12 Reproducibility Notes*
-
-• Fixed random seeds
-• Consistent train/validation splits
-• Identical preprocessing for train and test data
-• No data leakage
-
-*13 Conclusion*
-
-This project demonstrates that satellite imagery provides complementary neighborhood-level
-information for property valuation. While tabular models remain strong baselines, a hybrid
-CNN + XGBoost approach achieves superior accuracy by combining deep visual representations
-with robust tree-based regression.
+# How to Run the Project (QUICK START)
+1. Download the dataset
+2. Set Mapbox API token
+3. Fetch satellite images
+4. Run preprocessing
+5. Train CNN
+6. Train hybrid XGBoost
+7. Generate final predictions
